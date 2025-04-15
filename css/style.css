@@ -142,7 +142,7 @@ body {
 
 .profile-image {
   width: 150px;
-  border-radius: 50%;
+  border-radius: 0%;
   animation: bounce 1s infinite alternate;
 }
 
