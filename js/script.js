@@ -69,9 +69,12 @@ function updateImage(theme) {
   const profileImage = document.querySelector('.profile-image');
   if (theme === 'dark') {
     profileImage.src = 'assets/profile-image.png'; // Chemin de l'image en mode sombre
-  } else {
+  } else if (theme === 'light') {
     profileImage.src = 'assets/profile-image-black.png'; // Chemin de l'image en mode clair
+  } else{
+    profileImage.src = 'assets/profile-image-black.png';
   }
+
 
   const logoImage = document.querySelector('.logo-image');
   if (theme === 'dark') {
