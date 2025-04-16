@@ -53,10 +53,6 @@ if (currentTheme) {
   if (currentTheme === "dark") {
     toggleSwitch.checked = true;
   }
-} else {
-  document.documentElement.setAttribute("data-theme", "light");
-  localStorage.setItem("theme", "light");
-  updateProfileImage('light');
 }
 
 //Adding date
