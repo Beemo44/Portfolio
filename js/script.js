@@ -53,6 +53,10 @@ if (currentTheme) {
   if (currentTheme === "dark") {
     toggleSwitch.checked = true;
   }
+} else {
+  document.documentElement.setAttribute("data-theme", "light");
+  localStorage.setItem("theme", "light");
+  updateProfileImage('light');
 }
 
 //Adding date
@@ -68,16 +72,17 @@ myDate.innerHTML = yes;
 function updateImage(theme) {
   const profileImage = document.querySelector('.profile-image');
   if (theme === 'dark') {
-    profileImage.src = 'assets/profile-image.png'; // Chemin de l'image en mode sombre
+    profileImage.src = 'assets/profile-image.png'; 
   } else {
-    profileImage.src = 'assets/profile-image-black.png'; // Chemin de l'image en mode clair
+    profileImage.src = 'assets/profile-image-black.png'; 
   }
 
   const logoImage = document.querySelector('.logo-image');
   if (theme === 'dark') {
-    logoImage.src = 'assets/logo.png'; // Chemin du logo en mode sombre
+    logoImage.src = 'assets/logo.png'; 
   } else {
-    logoImage.src = 'assets/logo-black.png'; // Chemin du logo en mode clair
+    logoImage.src = 'assets/logo-black.png'; 
   }
   
 }
+
