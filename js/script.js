@@ -23,13 +23,7 @@ const toggleSwitch = document.querySelector(
   '.theme-switch input[type="checkbox"]'
 );
 
-function switchTheme(e) {
-  if (e.target.checked) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-}
+
 
 toggleSwitch.addEventListener("change", switchTheme, false);
 
@@ -39,9 +33,11 @@ function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme", "dark"); //add this
+    updateImage('dark');
   } else {
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light"); //add this
+    updateImage('light');
   }
 }
 
@@ -53,7 +49,7 @@ const currentTheme = localStorage.getItem("theme")
 
 if (currentTheme) {
   document.documentElement.setAttribute("data-theme", currentTheme);
-
+  updateImage(currentTheme)
   if (currentTheme === "dark") {
     toggleSwitch.checked = true;
   }
@@ -69,4 +65,19 @@ myDate.innerHTML = yes;
 
 //switch picture darkmode
 
+function updateImage(theme) {
+  const profileImage = document.querySelector('.profile-image');
+  if (theme === 'dark') {
+    profileImage.src = 'assets/profile-image.png'; // Chemin de l'image en mode sombre
+  } else {
+    profileImage.src = 'assets/profile-image-black.png'; // Chemin de l'image en mode clair
+  }
 
+  const logoImage = document.querySelector('.logo-image');
+  if (theme === 'dark') {
+    logoImage.src = 'assets/logo.png'; // Chemin du logo en mode sombre
+  } else {
+    logoImage.src = 'assets/logo-black.png'; // Chemin du logo en mode clair
+  }
+  
+}
