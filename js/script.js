@@ -68,4 +68,45 @@ document.addEventListener('DOMContentLoaded', (event) => {
       logoImage.src = 'assets/logo-black.png';
     }
   }
+  async function fetchRSS() {
+    const rssUrl = 'https://www.cert.ssi.gouv.fr/feed/';
+    const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl);
+
+    try {
+      const res = await fetch(proxyUrl);
+      const data = await res.json();
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(data.contents, "text/xml");
+
+      const items = xml.querySelector("channel").querySelectorAll("item");
+
+      const feedContainer = document.getElementById("rss-feed");
+      feedContainer.innerHTML = "";
+
+      for (let i = 0; i < Math.min(6, items.length); i++) {
+        const item = items[i];
+        const title = item.querySelector("title")?.textContent || "Titre inconnu";
+        const pubDate = item.querySelector("pubDate")?.textContent || "";
+        const date = pubDate ? new Date(pubDate).toLocaleDateString() : "Date inconnue";
+        const link = item.querySelector("link")?.textContent || item.querySelector("guid")?.textContent || "#";
+
+        const card = document.createElement("div");
+        card.className = "veille-card";
+        card.innerHTML = `
+          <h3>${title}</h3>
+          <p>${date}</p>
+          <div class="project-link">
+            <a href="${link}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+          </div>
+        `;
+
+        feedContainer.appendChild(card);
+      }
+    } catch (error) {
+      console.error("Erreur de chargement du flux RSS :", error);
+      document.getElementById("rss-feed").innerHTML = "<p>Impossible de charger les articles pour le moment.</p>";
+    }
+  }
+
+  fetchRSS();
 });

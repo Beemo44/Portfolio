@@ -332,3 +332,51 @@ body {
     width: 80%;
   }
 }
+
+.veille-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.veille-card {
+  background: var(--card-background);
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-color);
+  transition: 0.3s;
+}
+
+.veille-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.veille-card p {
+  font-size: 0.85rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.veille-card .project-link {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.veille-card a {
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.veille-card a:hover {
+  color: var(--primary-color);
+}
+
+:root .card {
+  box-shadow: var(--shadow);
+}
