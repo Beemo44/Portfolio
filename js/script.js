@@ -85,13 +85,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const date = new Date(item.pubDate).toLocaleDateString() || "Date inconnue";
         const link = item.link || "#";
   
-        const card = document.createElement("div");
+        const card = document.createElement("a");
+        card.href = link;
+        card.target = "_blank";
         card.className = "veille-card";
+        card.style.textDecoration = "none"; // pour éviter le soulignement du lien
+        card.style.color = "inherit"; // garde les couleurs du texte normales
+  
         card.innerHTML = `
           <h3>${title}</h3>
           <p>${date}</p>
           <div class="project-link">
-            <a href="${link}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+            <i class="fas fa-external-link-alt"></i>
           </div>
         `;
   
