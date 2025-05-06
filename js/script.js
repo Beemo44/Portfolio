@@ -85,12 +85,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const date = new Date(item.pubDate).toLocaleDateString() || "Date inconnue";
         const link = item.link || "#";
   
-        const card = document.createElement("a");
-        card.href = link;
-        card.target = "_blank";
+        const card = document.createElement("div");
         card.className = "veille-card";
-        card.style.textDecoration = "none"; // pour éviter le soulignement du lien
-        card.style.color = "inherit"; // garde les couleurs du texte normales
+        card.onclick = () => window.open(link, '_blank');
+        card.style.cursor = "pointer";
   
         card.innerHTML = `
           <h3>${title}</h3>
